@@ -1,0 +1,613 @@
+@import 'libs/vars';
+@import 'libs/functions';
+@import 'libs/mixins';
+@import 'libs/vendor';
+@import 'libs/breakpoints';
+@import 'libs/html-grid';
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic');
+@import url('fontawesome-all.min.css');
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+
+
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Righteous", cursive;
+  min-height: 100vh;
+  background-color: #a9c9ff;
+  background-image: linear-gradient(180deg, #a9c9ff 0%, #ffbbec 100%);
+
+  .container {
+    max-width: 100vw;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 35px;
+    margin: 0 auto;
+    padding: 40px 0;
+
+    .card {
+      position: relative;
+      width: 300px;
+      height: 400px;
+      margin: 0 auto;
+      background: #000;
+      border-radius: 15px;
+      box-shadow: 0 15px 60px rgba(0, 0, 0, 0.5);
+
+      .face {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &.face1 {
+          box-sizing: border-box;
+          padding: 20px;
+
+          h2 {
+            margin: 0;
+            padding: 0;
+          }
+
+          .java {
+            background-color: #ffffff;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+
+          .python {
+            background-color: #ffffff;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+
+          .cSharp {
+            background-color: #ffffff;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+        }
+
+        &.face2 {
+          transition: 0.5s;
+
+          h2 {
+            margin: 0;
+            padding: 0;
+            font-size: 10em;
+            color: #fff;
+            transition: 0.5s;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+          }
+        }
+      }
+    }
+
+    .card:hover .face.face2 {
+      height: 60px;
+
+      h2 {
+        font-size: 2em;
+      }
+    }
+
+    .card:nth-child(1) .face.face2 {
+      background-image: linear-gradient(
+        40deg,
+        #ececc8 0%,
+        #d9b8da 45%,
+        #00fffc 100%
+      );
+      border-radius: 15px;
+    }
+
+    .card:nth-child(2) .face.face2 {
+      background-image: linear-gradient(
+        40deg,
+        #84b8cf 0%,
+        #00fffc 45%,
+        #fffc00 100%
+      );
+      border-radius: 15px;
+    }
+
+    .card:nth-child(3) .face.face2 {
+      background-image: linear-gradient(
+        40deg,
+        #00fffc 0%,
+        #fc00ff 45%,
+        #fffc00 100%
+      );
+      border-radius: 15px;
+    }
+  }
+}
+
+
+
+// Breakpoints.
+
+	@include breakpoints((
+		xlarge:  ( 1281px,  1680px ),
+		large:   ( 981px,   1280px ),
+		medium:  ( 737px,   980px  ),
+		small:   ( 361px,   736px  ),
+		xsmall:  ( null,    360px  )
+	));
+
+// Reset.
+// Based on meyerweb.com/eric/tools/css/reset (v2.0 | 20110126 | License: public domain)
+
+	html, body, div, span, applet, object,
+	iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
+	pre, a, abbr, acronym, address, big, cite,
+	code, del, dfn, em, img, ins, kbd, q, s, samp,
+	small, strike, strong, sub, sup, tt, var, b,
+	u, i, center, dl, dt, dd, ol, ul, li, fieldset,
+	form, label, legend, table, caption, tbody,
+	tfoot, thead, tr, th, td, article, aside,
+	canvas, details, embed, figure, figcaption,
+	footer, header, hgroup, menu, nav, output, ruby,
+	section, summary, time, mark, audio, video {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font-size: 100%;
+		font: inherit;
+		vertical-align: baseline;
+	}
+
+	article, aside, details, figcaption, figure,
+	footer, header, hgroup, menu, nav, section {
+		display: block;
+	}
+
+	body {
+		line-height: 1;
+	}
+
+	ol, ul {
+		list-style: none;
+	}
+
+	blockquote,	q {
+		quotes: none;
+
+		&:before,
+		&:after {
+			content: '';
+			content: none;
+		}
+	}
+
+	table {
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+
+	body {
+		-webkit-text-size-adjust: none;
+	}
+
+	mark {
+		background-color: transparent;
+		color: inherit;
+	}
+
+	input::-moz-focus-inner {
+		border: 0;
+		padding: 0;
+	}
+
+	input, select, textarea {
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		-ms-appearance: none;
+		appearance: none;
+	}
+
+/* Row */
+
+	.row {
+		@include html-grid((1.25em, 1.25em));
+
+		@include breakpoint('<=xlarge') {
+			@include html-grid((1.25em, 1.25em), 'xlarge');
+		}
+
+		@include breakpoint('<=large') {
+			@include html-grid((1.25em, 1.25em), 'large');
+		}
+
+		@include breakpoint('<=medium') {
+			@include html-grid((1.25em, 1.25em), 'medium');
+		}
+
+		@include breakpoint('<=small') {
+			@include html-grid((1.25em, 1.25em), 'small');
+		}
+	}
+
+    /* Basic */
+
+	// Set box model to border-box.
+	// Based on css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
+	html {
+		box-sizing: border-box;
+	}
+
+	*, *:before, *:after {
+		box-sizing: inherit;
+	}
+
+body {
+	background-image: url('images/overlay.png'), url('images/main.jpg');
+	background-repeat: repeat, no-repeat;
+	background-size: auto, 100% 100%;
+	background-attachment: fixed;
+	overflow-y: scroll;
+
+	// Stops initial animations until page loads.
+		&.is-preload {
+			*, *:before, *:after {
+				@include vendor('animation', 'none !important');
+				@include vendor('transition', 'none !important');
+			}
+		}
+
+}
+
+body, input, textarea, select {
+	font-family: "Lucida Console", "Courier New", monospace;
+	font-weight: 300;
+	color: #777777;
+	font-size: 20pt;
+	line-height: 1.75em;
+
+	@include breakpoint('<=xlarge') {
+		font-size: 15pt;
+	}
+
+	@include breakpoint('<=large') {
+		font-size: 14pt;
+	}
+
+	@include breakpoint('<=small') {
+		font-size: 12pt;
+	}
+
+	@include breakpoint('<=xsmall') {
+		font-size: 11pt;
+	}
+}
+
+strong, b, h1, h2, h3, h4, h5, h6 {
+	font-weight: 400;
+	color: #363636;
+}
+
+h1 {
+	font-size: 2.4em;
+	letter-spacing: -0.015em;
+}
+
+h2 {
+	font-size: 1.8em;
+	letter-spacing: -0.015em;
+}
+
+h3, h4, h5, h6 {
+	font-size: 1.25em;
+	letter-spacing: -0.015em;
+}
+
+@include breakpoint('<=small') {
+	h1 {
+		font-size: 1.75em;
+	}
+
+	h2 {
+		font-size: 1.375em;
+	}
+
+	h3, h4, h5, h6 {
+		font-size: 1em;
+	}
+}
+
+blockquote {
+	border-left: solid 0.5em #ddd;
+	padding: 1em 0 1em 2em;
+	font-style: italic;
+}
+
+em, i {
+	font-style: italic;
+}
+
+hr {
+	border: 0;
+	border-top: solid 1px #ddd;
+	padding: 1.5em 0 0 0;
+	margin: 1.75em 0 0 0;
+}
+
+sub {
+	position: relative;
+	top: 0.5em;
+	font-size: 0.8em;
+}
+
+sup {
+	position: relative;
+	top: -0.5em;
+	font-size: 0.8em;
+}
+
+br.clear {
+	clear: both;
+}
+
+p, ul, ol, dl, table, blockquote, form {
+	margin-bottom: 2em;
+}
+
+/* Table */
+
+table {
+	width: 100%;
+
+	&.default {
+		tbody {
+			tr {
+				border-bottom: solid 1px #f4f4f4;
+			}
+		}
+
+		td {
+			padding: 0.5em 1em 0.5em 1em;
+		}
+
+		th {
+			text-align: left;
+			font-weight: 400;
+			padding: 0.5em 1em 0.5em 1em;
+		}
+
+		thead {
+			border-bottom: solid 2px #f4f4f4;
+		}
+	}
+}
+
+/* Form */
+
+form {
+	label {
+		display: block;
+		font-weight: 400;
+		color: #363636;
+		margin: 0 0 1em 0;
+	}
+
+/* List*/
+
+ul {
+	list-style: disc;
+	padding-left: 1em;
+
+	li {
+		padding-left: 0.5em;
+	}
+
+}
+
+ol {
+	list-style: decimal;
+	padding-left: 1.25em;
+
+	li {
+		padding-left: 0.25em;
+	}
+} 
+
+/* Actions*/
+
+ul.actions {
+	list-style: none;
+	padding-left: 0;
+
+	li {
+		display: inline-block;
+		padding-left: 0;
+		margin: 0 0 0 0.5em;
+
+		&:first-child {
+			margin-left: 0;
+		}
+	}
+
+	@include breakpoint('<=small') {
+		li {
+			display: block;
+			margin: 0.75em 0 0 0;
+
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+	}
+} 
+
+/* Icons */
+
+.icon {
+	@include icon;
+	position: relative;
+	text-decoration: none;
+
+	&.solid {
+		&:before {
+			font-weight: 900;
+		}
+	}
+
+	&.brands {
+		&:before {
+			font-family: 'Font Awesome 5 Brands';
+		}
+	}
+
+	&:before {
+		line-height: inherit;
+	}
+
+	> .label {
+		display: none;
+	}
+} 
+
+/* Nav */
+
+#nav {
+	text-align: center;
+	height: 4.25em;
+	cursor: default;
+
+	a {
+		position: relative;
+		display: inline-block;
+		color: #ffffff;
+		width: 1em;
+		height: 1em;
+		line-height: 0.9em;
+		font-size: 2.5em;
+		margin: 0 0.25em 0 0.25em;
+		opacity: 0.35;
+		outline: 0;
+		@include vendor('transition', 'opacity .25s ease-in-out');
+
+		&.icon:before {
+			padding-right: 0;
+		}
+
+		&:before {
+			font-size: 0.8em;
+		}
+
+		&:after {
+			content: '';
+			display: block;
+			position: absolute;
+			left: 50%;
+			bottom: -0.75em;
+			margin-left: -0.5em;
+			border-bottom: solid 0em #ffffff;
+			border-left: solid 0.5em transparent;
+			border-right: solid 0.5em transparent;
+			@include vendor('transition', 'border-bottom-width .25s ease-in-out');
+		}
+
+		span {
+			display: block;
+			position: absolute;
+			background: #222222;
+			color: #ffffff;
+			top: -2.75em;
+			font-size: 0.3em;
+			height: 2.25em;
+			line-height: 2.25em;
+			left: 50%;
+			opacity: 0;
+			@include vendor('transition', 'opacity .25s ease-in-out');
+			// Labels not wide enough? Increase its width below and set margin-left to ((width / 2) * -1)
+			width: 5.5em;
+			margin-left: -2.75em;
+
+			&:after {
+				content: '';
+				display: block;
+				position: absolute;
+				bottom: -0.4em;
+				left: 50%;
+				margin-left: -0.6em;
+				border-top: solid 0.6em #222222;
+				border-left: solid 0.6em transparent;
+				border-right: solid 0.6em transparent;
+			}
+		}
+
+		&:hover {
+			opacity: 1.0;
+
+			span {
+				opacity: 1.0;
+			}
+		}
+
+		&.active {
+			opacity: 1.0;
+
+			&:after {
+				border-bottom-width: 0.5em;
+			}
+		}
+	}
+
+	@include breakpoint('<=medium') {
+		a {
+			span {
+				display: none;
+			}
+		}
+	}
+}
+
+/* Wrapper */
+
+#wrapper {
+	width: 45em;
+	margin: 0 auto;
+	min-height: 100vh;
+	max-width: 100%;
+	padding: 4em 0;
+	@include vendor('display', 'flex');
+	@include vendor('flex-direction', 'column');
+	@include vendor('align-items', 'center');
+	@include vendor('justify-content', 'center');
+	@include vendor('transition', 'opacity 1s ease-in-out');
+
+	body.is-preload & {
+		opacity: 0;
+	}
+
+	@include breakpoint('<=large') {
+		padding: 3em 0;
+		max-width: calc(100% - 6em);
+	}
+
+	@include breakpoint('<=medium') {
+		padding: 1.5em 0;
+		max-width: calc(100% - 8em);
+	}
+
+	@include breakpoint('<=small') {
+		padding: 1em 0;
+		max-width: calc(100% - 2em);
+	}
+
+	@include breakpoint('<=xsmall') {
+		padding: 1em 0;
+		max-width: 100%;
+	}
+}
+
